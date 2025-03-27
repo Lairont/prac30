@@ -33,5 +33,18 @@ namespace ConsoleApp8
         {
             Console.WriteLine($"Газета: {Name}\nКол-во листов: {Listcount}\nТираж: {Edition}\nЦена: {Listprice}");
         }
+
+        public static Magazine Enter()
+        {
+            Console.Clear();
+            Console.Write("Введите название журнала: ");
+            string name = Console.ReadLine();
+            Console.Write("Введите тираж журнала: ");
+            int edition = int.Parse(Console.ReadLine());
+            Console.Write("Введите цену журнала: ");
+            int price = int.Parse(Console.ReadLine());
+            return new Magazine
+                (name, edition, price);
+        }
     }
 }

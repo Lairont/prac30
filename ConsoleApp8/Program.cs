@@ -10,17 +10,64 @@ namespace ConsoleApp8
     {
         static void Main(string[] args)
         {
-            List<PrintedProducts> printedProducts = new List<PrintedProducts>();
-            printedProducts.Add(new Magazine("Наука", 1500, 200));
-            printedProducts.Add(new Newspaper("Известия", 21, 2050, 150));
+            //1 способ
+            //PrintedProducts pressa = new Magazine("Информация образования", 100, 25);
+            //pressa.Info();
+            //Console.WriteLine("Стоимость тиража:" + pressa.TotalCost() + "руб.");
 
-            foreach (var product in printedProducts)
+            //2 способ
+            //List<PrintedProducts> printedProducts = new List<PrintedProducts>();
+            //printedProducts.Add(new Magazine("Наука", 1500, 200));
+            //printedProducts.Add(new Newspaper("Известия", 21, 2050, 150));
+
+            //foreach (var product in printedProducts)
+            //{
+            //    product.Info();
+            //    Console.WriteLine($"Стоимость тиража: {product.TotalCost()} руб.");
+            //    Console.WriteLine();
+            //}
+
+            List<PrintedProducts> pressa = new List<PrintedProducts>();
+            bool flag = true;
+
+            do
             {
-                product.Info();
-                Console.WriteLine($"Стоимость тиража: {product.TotalCost()} руб.");
-                Console.WriteLine();
-            }
+                Console.Write("Введите название печатной продукции: ");
+                string metka = Console.ReadLine();
+
+                switch (metka)
+                {
+                    case "m":
+                    case "M":
+                        pressa.Add(Magazine.Enter()); 
+                        break;
+
+                    case "n":
+                    case "N":
+                        pressa.Add(Newspaper.Enter()); 
+                        break;
+
+                    default:
+                        Console.WriteLine("Нет такой.");
+                        flag = false; 
+                        break;
+                }
+
+                if (flag) 
+                {
+                    Console.WriteLine("\nСписок продукции:");
+                    foreach (PrintedProducts pr in pressa)
+                    {
+                        pr.Info();
+                        Console.WriteLine("Стоимость тиража: " + pr.TotalCost() + " руб.");
+                    }
+                }
+
+             } 
+                    while (flag); 
+
             Console.ReadLine();
+
         }
     }
 }
